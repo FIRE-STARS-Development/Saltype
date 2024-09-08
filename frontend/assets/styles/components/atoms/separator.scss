@@ -1,0 +1,46 @@
+@use "@/assets/styles/variables" as var;
+
+.separator {
+  align-self: center;
+  border-bottom: 1px solid;
+}
+
+.separator--white {
+  border-color: var.$white;
+}
+
+.separator--black {
+  border-color: var.$black;
+}
+
+.separator--blue {
+  border-color: var.$blue;
+}
+
+.separator--dark-blue {
+  border-color: var.$dark-blue;
+}
+
+.separator--small {
+  width: 15%;
+}
+
+.separator--medium {
+  width: 50%;
+}
+
+.separator--large {
+  width: 90%;
+}
+
+.separator--none {
+  margin: 0;
+}
+
+.separator--vertical {
+  margin: 35px 0;
+}
+
+.separator--horizontal {
+  margin: 0 35px;
+}

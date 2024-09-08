@@ -1,0 +1,20 @@
+.sep {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  .center-text {
+    align-self: center;
+  }
+}
+
+.google-auth {
+  display: flex;
+  justify-content: center;
+
+  .auth-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

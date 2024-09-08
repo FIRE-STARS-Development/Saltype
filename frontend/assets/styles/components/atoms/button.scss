@@ -1,0 +1,115 @@
+@use "@/assets/styles/variables" as var;
+
+/* text */
+.button-text--white {
+  color: var.$white;
+}
+
+.button-text--black {
+  color: var.$black;
+}
+
+.button-text--blue {
+  color: var.$blue;
+}
+
+.button-text--dark-blue {
+  color: var.$dark-blue;
+}
+
+/* border */
+.button-border--white {
+  border-color: var.$white;
+}
+
+.button-border--black {
+  border-color: var.$black;
+}
+
+.button-border--blue {
+  border-color: var.$blue;
+}
+
+.button-border--dark-blue {
+  border-color: var.$dark-blue;
+}
+
+.button-border--none {
+  border: none;
+}
+
+/* width */
+.button-width--small {
+  max-width: 100%;
+  width: 80px;
+}
+
+.button-width--medium {
+  max-width: 100%;
+  width: 120px;
+}
+
+.button-width--large {
+  max-width: 100%;
+  width: 160px;
+}
+
+.button-width--same-as-input-large {
+  max-width: 100%;
+  width: 350px;
+}
+
+/* height */
+.button-height--small {
+  max-height: 100%;
+  height: 30px;
+}
+
+.button-height--medium {
+  max-height: 100%;
+  height: 40px;
+}
+
+.button-height--large {
+  max-height: 100%;
+  height: 50px;
+}
+
+/* background */
+.button-background--white {
+  background-color: var.$white;
+}
+
+.button-background--black {
+  background-color: var.$black;
+}
+
+.button-background--blue {
+  background-color: var.$blue;
+}
+
+.button-background--dark-blue {
+  background-color: var.$dark-blue;
+}
+
+/* round */
+.button--rounded {
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* hover */
+button:hover {
+  border-color: var.$purple;
+  cursor: pointer;
+
+  &:disabled {
+    border-color: var.$disabled-color;
+  }
+}
+
+button:disabled {
+  border-color: var.$disabled-color;
+  cursor: not-allowed;
+  opacity: 0.6;
+}

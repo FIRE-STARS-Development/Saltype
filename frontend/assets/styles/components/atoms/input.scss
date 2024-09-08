@@ -1,0 +1,131 @@
+@use "@/assets/styles/variables" as var;
+
+/* text */
+.input-text--white {
+  color: var.$white;
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: var.$white;
+  }
+}
+
+.input-text--black {
+  color: var.$black;
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: var.$black;
+  }
+}
+
+.input-text--blue {
+  color: var.$blue;
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: var.$blue;
+  }
+}
+
+.input-text--dark-blue {
+  color: var.$dark-blue;
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: var.$dark-blue;
+  }
+}
+
+/* border */
+.input-border--white {
+  border-color: var.$white;
+}
+
+.input-border--black {
+  border-color: var.$black;
+}
+
+.input-border--blue {
+  border-color: var.$blue;
+}
+
+.input-border--dark-blue {
+  border-color: var.$dark-blue;
+}
+
+.input-border--none {
+  border: none;
+}
+
+/* width */
+.input-width--small {
+  max-width: 100%;
+  width: 150px;
+}
+
+.input-width--medium {
+  max-width: 100%;
+  width: 250px;
+}
+
+.input-width--large {
+  max-width: 100%;
+  width: 350px;
+}
+
+/* height */
+.input-height--small {
+  max-height: 100%;
+  height: 30px;
+}
+
+.input-height--medium {
+  max-height: 100%;
+  height: 40px;
+}
+
+.input-height--large {
+  max-height: 100%;
+  height: 50px;
+}
+
+/* background */
+.input-background--white {
+  background-color: var.$white;
+
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 1000px var.$white inset;
+  }
+}
+
+.input-background--black {
+  background-color: var.$black;
+
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 1000px var.$black inset;
+  }
+}
+
+.input-background--blue {
+  background-color: var.$blue;
+
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 1000px var.$blue inset;
+  }
+}
+
+.input-background--dark-blue {
+  background-color: var.$dark-blue;
+
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 1000px var.$dark-blue inset;
+  }
+}
+
+/* round */
+.input--rounded {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+  border-color: var.$purple;
+  outline: none;
+}

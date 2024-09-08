@@ -1,0 +1,31 @@
+@use "@/assets/styles/variables" as var;
+
+/** text **/
+.text--white {
+  color: var.$white;
+}
+
+.text--black {
+  color: var.$black;
+}
+
+.text--blue {
+  color: var.$blue;
+}
+
+.text--dark-blue {
+  color: var.$dark-blue;
+}
+
+/** text size **/
+.text--small {
+  font-size: 14px;
+}
+
+.text--medium {
+  font-size: 16px;
+}
+
+.text--large {
+  font-size: 20px;
+}

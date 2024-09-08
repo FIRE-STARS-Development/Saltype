@@ -1,0 +1,27 @@
+@use "@/assets/styles/variables" as var;
+
+Form {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  .field {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .eye {
+      position: absolute;
+
+      transform: translate(-130%, 20%);
+    }
+  }
+
+  .buttons {
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+  }
+}
