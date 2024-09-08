@@ -6,25 +6,14 @@ from .models import Rank, t_score
 from .serializers import ResultSerializer
 
 @api_view(['POST'])
-def add_score(request):
+def add_score_and_rank(request):
     """
-    スコアインサート処理
-
-    Attributes:
-        スコアを用いてランク判定して、スコアをインサート
-        そのスコアが、最高スコアならランクをアップデートする
-    :param:
-        request
+    スコアインサートとランク判定処理
+    :param: request
     :return: 
-        score:スコア
-        is_high_score:最高スコアフラグ
-        rank:ランク名（メンバーなど）
-        user_ranking:ユーザーのランキング
-    :rtype: 
-        int
-        bool
-        str
-        int
+        score: スコア
+        is_high_score: 最高スコアフラグ
+        rank: ランク名
     """
     serializer = ResultSerializer(data=request.data)
     if serializer.is_valid():
@@ -34,7 +23,7 @@ def add_score(request):
         diff_id = data.get('diff_id')
         score = data.get('score')
 
-        """ 最高スコア判定メソッド呼び出し """
+        """ 最高スコア判定 """
         is_high_score, highest_score = is_new_high_score(user_id, lang_id, diff_id, score)
 
         """ スコアインサート処理 """
@@ -45,54 +34,49 @@ def add_score(request):
             diff_id=diff_id
         )
 
-        """ ユーザーランキング取得メソッド呼び出し """
-        user_ranking = get_user_rank(user_id, lang_id, diff_id)
-
-        """ ランク判定メソッド呼び出し """
+        """ ランク判定処理 """
         rank_name = determine_rank(score)
 
         if is_high_score:
-            """ 最高スコアの場合、判定後ランクをアップデート """
+            """ 最高スコアの場合、ランクをアップデート """
             rank, created = Rank.objects.get_or_create(rank=rank_name)
         else:
-            """ 最高スコアでない場合、インサートせず判定後表示だけ """
             rank = Rank.objects.filter(rank=rank_name).first()
 
         return Response({
             'score': ResultSerializer(score_instance).data,
             'is_high_score': is_high_score,
-            'rank': rank_name,
-            'user_rank': user_ranking 
+            'rank': rank_name
         }, status=status.HTTP_200_OK)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def get_user_rank(user_id, lang_id, diff_id):
+@api_view(['POST'])
+def get_user_rank(request):
     """
-    ランキング取得処理
+    ユーザーのランキング取得処理
+    :param: request
+    :return: ユーザーのランキング
+    """
+    user_id = request.data.get('user_id')
+    lang_id = request.data.get('lang_id')
+    diff_id = request.data.get('diff_id')
 
-    Atributes:
-        ユーザーをスコア降順に並べ獲得したスコアのランキングを取得しリターン
-    :param user_id: ユーザーID
-    :param lang_id: 言語ID
-    :param diff_id: 難易度ID
-    :return: 
-        ユーザーのランキング（順位）
-    :rtype: 
-        int
-    """
-    """ 指定の言語と難易度に対するすべてのスコアを降順で取得 """
+    if not user_id or not lang_id or not diff_id:
+        return Response({"error": "Missing required parameters"}, status=status.HTTP_400_BAD_REQUEST)
+
+    """ 指定の言語と難易度に対するスコアを降順で取得し、ユーザーの順位を取得 """
     scores = t_score.objects.filter(lang_id=lang_id, diff_id=diff_id).order_by('-score')
     
-    """ ユーザーの順位を計算 """
     ranking = 1
     for score_instance in scores:
         if score_instance.user_id == user_id:
-            return ranking
+            return Response({"user_rank": ranking}, status=status.HTTP_200_OK)
         ranking += 1
 
     """ ランキングが見つからない場合 """
-    return ranking  
+    return Response({"error": "User not found in ranking"}, status=status.HTTP_404_NOT_FOUND)
+
 
 def determine_rank(score):
     """
