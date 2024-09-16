@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import insert_score_api
-from . import views
+from .views import AddScoreAndRankView
 
 urlpatterns = [
-    path('api/scores/', views.add_score, name='add_score'),
+    path('insert-result/', AddScoreAndRankView.as_view(), name='insert-result'),
 ]

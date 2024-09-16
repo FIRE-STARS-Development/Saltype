@@ -1,13 +1,13 @@
 from rest_framework import serializers
-from .models import t_score
+from .models import Score,User
 
-class ResultSerializer(serializers.ModelSerializer):
+class ScoreSerializer(serializers.ModelSerializer):
     """
-    スコア結果シリアライザー
+    スコアシリアライザー
 
     Atributes:
-        score_id、user_id、score、lang_id、diff_idをバリデーション
+        user_id,score,lang_id,diff_idのバリデーション
     """
     class Meta:
-        model = t_score
-        fields = ['score_id', 'user_id', 'score', 'lang_id', 'diff_id']
+        model = Score
+        fields = ['user', 'score', 'lang', 'diff']
