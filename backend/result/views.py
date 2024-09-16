@@ -15,7 +15,6 @@ class AddScoreAndRankView(APIView):
         2.スコアインサート
         3.ランク判定
         4.最高スコアの時のみランクインサート
-        5.ユーザのランキング取得
     """
 
     """ アクセス認証（全員） """
@@ -32,7 +31,10 @@ class AddScoreAndRankView(APIView):
             rank(int):ランク名
             ranking_position(int):ユーザのランキング 
         """
+        
+        """リクエストデータをシリアライザーへ"""
         serializer = ScoreSerializer(data=request.data)
+        
         """ バリデーション通過できたら """
         if serializer.is_valid():
             """ データ取得 """
@@ -75,6 +77,7 @@ class AddScoreAndRankView(APIView):
         3.ランク判定
         4.最高スコアの場合、最高ランクアップデート
         """
+        
         """ 最高スコア判定 """
         is_high_score, new_highest_score = score_service.is_new_high_score()
 

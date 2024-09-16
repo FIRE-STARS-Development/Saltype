@@ -17,6 +17,7 @@ class ScoreService:
     def is_new_high_score(self):
         """
         最高スコア判定処理
+        
         :return: 
             is_high_score: 最高スコアかどうかのフラグ (bool)
             new_highest_score: 新しい最高スコア (int or None)
@@ -27,37 +28,45 @@ class ScoreService:
             lang_id=self.lang_id,
             diff_id=self.diff_id
         ).order_by('-score', '-created_at').first()
-
-        if old_highest_score is None:
+        
+        if old_highest_score is None: #過去スコアがない場合
             return True, self.score
-        elif self.score > old_highest_score.score:
+        elif self.score > old_highest_score.score:#取得スコアが過去スコアより大きい場合
             return True, self.score
-        else:
+        else:#取得スコアの方が小さい場合
             return False, None
 
     def determine_rank(self):
         """
         スコアに基づいてランクIDを決定する
+        
         :return: ランクID (int)
         """
         if self.score >= 1000:
-            return 7  # 社長 
+            """7:社長"""
+            return 7  
         elif self.score >= 900:
-            return 6  # 取締役
+            """6:取締役"""
+            return 6  
         elif self.score >= 700:
-            return 5  # 部長
+            """5:部長"""
+            return 5  
         elif self.score >= 500:
-            return 4  # 課長
+            """4:課長"""
+            return 4  
         elif self.score >= 300:
-            return 3  # 係長
+            """3:係長"""
+            return 3  
         elif self.score >= 100:
-            return 2  # 主任
+            """2:主任"""
+            return 2  
         else:
-            return 1  # メンバー
+            """メンバー"""
+            return 1  
 
     def get_ranking_position(self):
         """
-        5.現在のユーザーのランキング順位を取得(タイ順位を採用)
+        現在のユーザーのランキング順位を取得(タイ順位を採用)
         """
         
         """ ユーザーの最高スコアを取得 """

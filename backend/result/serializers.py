@@ -5,6 +5,7 @@ class ScoreSerializer(serializers.ModelSerializer):
     """
     Scoreモデルのシリアライザークラス
     """
+    
     """外部キーとして受け取るフィールド"""
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     lang = serializers.PrimaryKeyRelatedField(queryset=Lang.objects.all())
@@ -21,9 +22,11 @@ class ScoreSerializer(serializers.ModelSerializer):
         :param validated_data: バリデーション済みのデータ
         :return: 新しく作成されたScoreインスタンス
         """
+        
         """バリデーション済みのデータから各フィールド取り出し"""
         user = validated_data.pop('user')
         lang = validated_data.pop('lang')
         diff = validated_data.pop('diff')
+        
         """新しいScoreインスタンスを作成して保存"""
         return Score.objects.create(user=user, lang=lang, diff=diff, **validated_data)
