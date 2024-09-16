@@ -1,7 +1,7 @@
 from django.db import migrations
 
 def create_initial_data(apps, schema_editor):
-    # Rankモデルにデータを追加
+    """ Rankモデルにデータを追加 """
     Rank = apps.get_model('result', 'Rank')
     Rank.objects.get_or_create(rank_id=1, defaults={'rank': "メンバー", 'del_flg': False})
     Rank.objects.get_or_create(rank_id=2, defaults={'rank': "主任", 'del_flg': False})
@@ -11,22 +11,22 @@ def create_initial_data(apps, schema_editor):
     Rank.objects.get_or_create(rank_id=6, defaults={'rank': "取締役", 'del_flg': False})
     Rank.objects.get_or_create(rank_id=7, defaults={'rank': "社長", 'del_flg': False})
 
-    # Langモデルにデータを追加
+    """ Langモデルにデータを追加　 """
     Lang = apps.get_model('result', 'Lang')
     Lang.objects.get_or_create(lang_id=1, defaults={'lang': "日本語", 'del_flg': False})
     Lang.objects.get_or_create(lang_id=2, defaults={'lang': "英語", 'del_flg': False})
 
-    # Diffモデルにデータを追加
+    """ Diffモデルにデータを追加 """
     Diff = apps.get_model('result', 'Diff')
     Diff.objects.get_or_create(diff_id=1, defaults={'diff': "イージー", 'del_flg': False})
     Diff.objects.get_or_create(diff_id=2, defaults={'diff': "ノーマル", 'del_flg': False})
     Diff.objects.get_or_create(diff_id=3, defaults={'diff': "ハード", 'del_flg': False})
 
-    # Userモデルにデータを追加
+    """ Userモデルにデータを追加 """
     User = apps.get_model('result', 'User')
     Rank = apps.get_model('result', 'Rank')
 
-    # 既存の rank_id=1 の Rank インスタンスを取得または作成
+    """ 既存の rank_id=1 の Rank インスタンスを取得または作成 """
     rank, _ = Rank.objects.get_or_create(rank_id=1, defaults={'rank': "メンバー", 'del_flg': False})
 
     # User モデルにデータを追加

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Lang(models.Model):
     """
     言語マスタテーブル定義
@@ -97,6 +98,9 @@ class Score(models.Model):
         db_table = "t_score"
 
 class User(models.Model):
+    """
+    テスト用臨時ユーザテーブル
+    """
     user_id = models.AutoField(primary_key=True)
     rank = models.ForeignKey('Rank', on_delete=models.SET_NULL, null=True, blank=True)
 
